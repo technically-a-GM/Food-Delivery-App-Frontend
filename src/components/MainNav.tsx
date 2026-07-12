@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import UserMenu from "./UserMenu";
 const MainNav = () =>{
 
-    const {loginWithRedirect, isAuthenticated,user} = useAuth0();
+    const {loginWithRedirect, isAuthenticated} = useAuth0();
 return (
     <span className="flex space-x-2 items-center">
         {isAuthenticated ? (

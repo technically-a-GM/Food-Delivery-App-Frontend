@@ -17,10 +17,16 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
 const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
-if(!domain || !clientId || !redirectUri || !audience){
-    throw new Error("unable to initialize auth");
-}
+console.log({
+  domain,
+  clientId,
+  redirectUri,
+  audience,
+});
 
+if (!domain || !clientId || !redirectUri || !audience) {
+  throw new Error("unable to initialize auth");
+}
 const onRedirectCallback = ()=>{
  navigate("/auth-callback");
 }

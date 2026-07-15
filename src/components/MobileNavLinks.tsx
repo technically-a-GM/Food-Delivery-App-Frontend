@@ -8,6 +8,7 @@ const MobileNavLinks = () =>{
 return (
     <>
         <Link to = "/user-profile" className="bg-white hover:text-orange-500 font-bold">User Profile</Link>
+        <Link to = "/manage-restaurant" className="bg-white hover:text-orange-500 font-bold">Manage Restaurant</Link>
         <Button
   onClick={() => {
     logout({

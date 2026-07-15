@@ -24,7 +24,7 @@ const CuisineCheckbox = ({ cuisine, field }: Props) => {
   const invalid = !!errors.cuisines;
 
   return (
-    <Field className="flex flex-row items-center gap-2">
+    <Field orientation="horizontal" className="gap-2">
       <Checkbox
         className={cn(
           "bg-white",
@@ -44,7 +44,7 @@ const CuisineCheckbox = ({ cuisine, field }: Props) => {
 
       <FieldLabel
         className={cn(
-          "font-normal",
+          "font-normal cursor-pointer",
           invalid && "text-destructive"
         )}
       >

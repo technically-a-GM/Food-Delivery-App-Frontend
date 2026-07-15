@@ -16,31 +16,29 @@ import type { Restaurant } from "@/types";
 
 export const formSchema = z
   .object({
-    restaurantName: z.string({
-      required_error: "Restaurant name is required",
-    }),
+    restaurantName: z
+      .string()
+      .min(1, "Restaurant name is required"),
 
-    city: z.string({
-      required_error: "City is required",
-    }),
+    city: z
+      .string()
+      .min(1, "City is required"),
 
-    country: z.string({
-      required_error: "Country is required",
-    }),
+    country: z
+      .string()
+      .min(1, "Country is required"),
 
-    deliveryPrice: z.coerce.number({
-      required_error: "Delivery price is required",
-      invalid_type_error: "Must be a valid number",
-    }),
+    deliveryPrice: z.coerce
+      .number()
+      .min(1, "Delivery price is required"),
 
-    estimatedDeliveryTime: z.coerce.number({
-      required_error: "Estimated delivery time is required",
-      invalid_type_error: "Must be a valid number",
-    }),
+    estimatedDeliveryTime: z.coerce
+      .number()
+      .min(1, "Estimated delivery time is required"),
 
-    cuisines: z.array(z.string()).nonempty({
-      message: "Please select at least one cuisine",
-    }),
+    cuisines: z
+      .array(z.string())
+      .min(1, "Please select at least one cuisine"),
 
     menuItems: z.array(
       z.object({
@@ -52,18 +50,18 @@ export const formSchema = z
     imageUrl: z.string().optional(),
 
     imageFile: z
-      .instanceof(File, {
-        message: "Image is required",
-      })
+      .instanceof(File)
       .optional(),
   })
-  .refine((data) => data.imageUrl || data.imageFile, {
-    path: ["imageFile"],
-    message: "Either image URL or image file must be provided",
-  });
+  .refine(
+    (data) => !!(data.imageUrl || data.imageFile),
+    {
+      path: ["imageFile"],
+      message: "Either image URL or image file must be provided",
+    }
+  );
 
-export type RestaurantFormData = z.infer<typeof formSchema>;
-
+export type RestaurantFormData = z.output<typeof formSchema>;
 type Props = {
   restaurant?: Restaurant;
   onSave: (restaurantFormData: FormData) => void;
@@ -75,13 +73,17 @@ const ManageRestaurantForm = ({
   onSave,
   isLoading,
 }: Props) => {
-  const form = useForm<RestaurantFormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      cuisines: [],
-      menuItems: [{ name: "", price: 0 }],
-    },
-  });
+  const form = useForm<
+  z.input<typeof formSchema>,
+  any,
+  z.output<typeof formSchema>
+>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    cuisines: [],
+    menuItems: [{ name: "", price: 0 }],
+  },
+});
 
   useEffect(() => {
     if (!restaurant) return;

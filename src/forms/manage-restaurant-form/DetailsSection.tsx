@@ -1,6 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
 
-import { Input } from "@/components/ui/input";
 import {
   Field,
   FieldDescription,
@@ -33,11 +32,10 @@ const DetailsSection = () => {
               Name
             </FieldLabel>
 
-            <Input
+            <input
               {...field}
               id="restaurantName"
-              className="bg-white"
-              aria-invalid={fieldState.invalid}
+              className="w-full rounded-md border border-gray-300 bg-white p-2"
             />
 
             {fieldState.error && (
@@ -61,11 +59,10 @@ const DetailsSection = () => {
                 City
               </FieldLabel>
 
-              <Input
+              <input
                 {...field}
                 id="city"
-                className="bg-white"
-                aria-invalid={fieldState.invalid}
+                className="w-full rounded-md border border-gray-300 bg-white p-2"
               />
 
               {fieldState.error && (
@@ -88,11 +85,10 @@ const DetailsSection = () => {
                 Country
               </FieldLabel>
 
-              <Input
+              <input
                 {...field}
                 id="country"
-                className="bg-white"
-                aria-invalid={fieldState.invalid}
+                className="w-full rounded-md border border-gray-300 bg-white p-2"
               />
 
               {fieldState.error && (
@@ -116,12 +112,12 @@ const DetailsSection = () => {
               Delivery Price (£)
             </FieldLabel>
 
-            <Input
+            <input
               {...field}
               id="deliveryPrice"
-              className="bg-white"
+              type="number"
+              className="w-full rounded-md border border-gray-300 bg-white p-2"
               placeholder="1.50"
-              aria-invalid={fieldState.invalid}
             />
 
             {fieldState.error && (
@@ -144,12 +140,12 @@ const DetailsSection = () => {
               Estimated Delivery Time (minutes)
             </FieldLabel>
 
-            <Input
+            <input
               {...field}
               id="estimatedDeliveryTime"
-              className="bg-white"
+              type="number"
+              className="w-full rounded-md border border-gray-300 bg-white p-2"
               placeholder="30"
-              aria-invalid={fieldState.invalid}
             />
 
             {fieldState.error && (

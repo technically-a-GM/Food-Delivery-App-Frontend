@@ -102,6 +102,7 @@ const ManageRestaurantForm = ({
       deliveryPrice: deliveryPriceFormatted,
       menuItems: menuItemsFormatted,
     });
+    console.log(form.getValues());
   }, [restaurant, form]);
 
   const onSubmit = (values: RestaurantFormData) => {

@@ -100,6 +100,10 @@ const DetailPage = () => {
       },
     };
 
+    if(checkoutData){
+        
+    }
+
     // const data = await createCheckoutSession(checkoutData);
     // window.location.href = data.url;
   };
